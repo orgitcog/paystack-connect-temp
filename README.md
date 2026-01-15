@@ -80,10 +80,18 @@ To integrate Stripe Connect embedded components, check out our [documentation](h
 
 ## Requirements
 
-You'll need a Stripe account to manage pet salon onboarding and payments:
+You'll need either a Stripe account or a Paystack account to manage onboarding and payments:
+
+### Stripe (Original Platform)
 
 - [Sign up for free](https://dashboard.stripe.com/register), then [enable Connect](https://dashboard.stripe.com/account/applications/settings) by filling in your Connect settings.
 - Fill in the necessary information in the **Branding** section in [Connect settings](https://dashboard.stripe.com/test/settings/connect).
+
+### Paystack (Africa Platform)
+
+- [Sign up for Paystack](https://dashboard.paystack.com/#/signup)
+- Get your API keys from [Settings > API Keys & Webhooks](https://dashboard.paystack.com/#/settings/developer)
+- Enable Subaccounts feature for Connect-like functionality
 
 ### Getting started
 
@@ -93,11 +101,22 @@ Install dependencies using npm (or yarn):
 yarn
 ```
 
-Copy the environment file and add your own [Stripe API keys](https://dashboard.stripe.com/account/apikeys):
+Copy the environment file and add your own API keys:
 
 ```
 cp .env.example .env
 ```
+
+For **Stripe**, add your [Stripe API keys](https://dashboard.stripe.com/account/apikeys):
+
+- `STRIPE_SECRET_KEY`
+- `STRIPE_PUBLIC_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+
+For **Paystack**, add your [Paystack API keys](https://dashboard.paystack.com/#/settings/developer):
+
+- `PAYSTACK_SECRET_KEY`
+- `PAYSTACK_PUBLIC_KEY`
 
 Install MongoDB Community Edition. Refer to the [official documentation](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/). Then, run MongoDB:
 
@@ -117,6 +136,8 @@ Go to `http://localhost:{process.env.PORT}` in your browser to start using the a
 
 To test events sent to your event handler, you can run this command in a separate terminal:
 
+**For Stripe:**
+
 ```
 stripe listen --forward-to localhost:3000/api/webhooks
 ```
@@ -126,6 +147,46 @@ Then, trigger a test event with:
 ```
 stripe trigger payment_intent.succeeded
 ```
+
+**For Paystack:**
+Set up webhooks in your [Paystack Dashboard](https://dashboard.paystack.com/#/settings/developer) pointing to:
+
+```
+http://localhost:3000/api/paystack/webhooks
+```
+
+## Paystack vs Stripe Connect Comparison
+
+This platform now supports both Stripe Connect and Paystack, providing a seamless migration path for businesses expanding to Africa:
+
+### Key Differences
+
+| Feature             | Stripe Connect               | Paystack                     |
+| ------------------- | ---------------------------- | ---------------------------- |
+| Connected Accounts  | Yes (Connected Accounts API) | Yes (Subaccounts API)        |
+| Embedded Components | Yes (UI components)          | No (custom UI required)      |
+| Markets             | US, Europe, Global           | Nigeria, Ghana, South Africa |
+| Dashboard Access    | Configurable                 | Via Paystack Dashboard       |
+| Onboarding          | Embedded onboarding          | Custom bank verification     |
+| Split Payments      | Yes                          | Yes (via subaccounts)        |
+
+### API Equivalents
+
+| Stripe             | Paystack     | Purpose                  |
+| ------------------ | ------------ | ------------------------ |
+| Connected Accounts | Subaccounts  | Manage merchant accounts |
+| Charges            | Transactions | Process payments         |
+| Payouts            | Transfers    | Send money to accounts   |
+| Account Sessions   | N/A          | Managed via API calls    |
+
+### Using Paystack
+
+1. **Create a Subaccount**: Use the `PaystackOnboarding` component or API
+2. **Initialize Transactions**: Use the `usePaystack` hook
+3. **View Transactions**: Use the `PaystackTransactionsList` component
+4. **Process Transfers**: Use the Paystack API for payouts
+
+See [paystack-oss.md](./paystack-oss.md) for more Paystack resources and documentation.
 
 ## Preview components
 
