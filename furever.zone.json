@@ -1,0 +1,78 @@
+{
+  "$schema": "./zone.config.schema.json",
+  "zone": {
+    "name": "FurEver",
+    "description": "A vertical SaaS grooming platform for pet salons",
+    "domain": "furever.dev"
+  },
+  "branding": {
+    "displayName": "Furever",
+    "tagline": "Manage your pet business with ease.",
+    "heroDescription": "Furever is the world's leading pet grooming platform. Join our team of salons and expand your business.",
+    "logo": {
+      "path": "/furever_logo.png",
+      "alt": "Furever logo"
+    },
+    "favicon": "/favicon.png",
+    "heroImage": "/landing-page.jpeg",
+    "primaryColor": "#635BFF",
+    "accentColor": "#00D4AA"
+  },
+  "terminology": {
+    "account": {
+      "singular": "salon",
+      "plural": "salons"
+    },
+    "entity": {
+      "singular": "pet",
+      "plural": "pets",
+      "displayName": "Pets"
+    },
+    "service": {
+      "provider": "groomer",
+      "session": "appointment",
+      "schedule": "schedule"
+    }
+  },
+  "features": {
+    "title": "Everything you need to manage your pet business.",
+    "description": "FEATURES",
+    "items": [
+      {
+        "title": "Simple scheduling",
+        "description": "Easily set up appointments, organize your calendar, and manage different salons.",
+        "icon": "CalendarCheck"
+      },
+      {
+        "title": "Accept payments",
+        "description": "Take credit card and bank payments, track all your transactions, and get paid out faster.",
+        "icon": "CreditCard"
+      },
+      {
+        "title": "Manage your finances",
+        "description": "Get access to banking, instant financing, issue credit cards, and view transactions.",
+        "icon": "ReceiptText"
+      }
+    ]
+  },
+  "testimonial": {
+    "quote": "Furever has transformed the way we manage our salon! Booking and payments are seamless now, and our clients love the convenience!",
+    "author": "Jamie L.",
+    "authorTitle": "Paws & Relax Spa",
+    "authorImage": "/testimonial-portrait.jpg",
+    "image": "/testimonial.jpeg"
+  },
+  "cta": {
+    "title": "Get started today.",
+    "description": "Furever is the world's leading pet grooming platform. Join our team of salons and expand your business"
+  },
+  "data": {
+    "entities": "/app/data/pets.json",
+    "schedule": "/app/data/schedule.json"
+  },
+  "stripe": {
+    "statementDescriptor": "FurEver",
+    "supportEmail": "furever@stripe.com",
+    "supportUrl": "https://furever.dev"
+  }
+}

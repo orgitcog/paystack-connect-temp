@@ -1,0 +1,230 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Zone Configuration Schema",
+  "description": "Configuration schema for defining a platform/vertical zone instance",
+  "type": "object",
+  "required": ["zone", "branding", "terminology", "features"],
+  "properties": {
+    "zone": {
+      "type": "object",
+      "required": ["name", "description", "domain"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the zone/platform (e.g., 'FurEver', 'BookNest', 'FitFlow')"
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of what this platform does"
+        },
+        "domain": {
+          "type": "string",
+          "description": "The domain name for this platform"
+        }
+      }
+    },
+    "branding": {
+      "type": "object",
+      "required": ["displayName", "tagline", "logo"],
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name shown in the UI"
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Main tagline/headline for landing page"
+        },
+        "heroDescription": {
+          "type": "string",
+          "description": "Description text on hero section"
+        },
+        "logo": {
+          "type": "object",
+          "required": ["path", "alt"],
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "Path to logo image"
+            },
+            "alt": {
+              "type": "string",
+              "description": "Alt text for logo"
+            }
+          }
+        },
+        "favicon": {
+          "type": "string",
+          "description": "Path to favicon"
+        },
+        "heroImage": {
+          "type": "string",
+          "description": "Path to hero/landing page background image"
+        },
+        "primaryColor": {
+          "type": "string",
+          "description": "Primary brand color (CSS variable or hex)"
+        },
+        "accentColor": {
+          "type": "string",
+          "description": "Accent color (CSS variable or hex)"
+        }
+      }
+    },
+    "terminology": {
+      "type": "object",
+      "required": ["account", "entity", "service"],
+      "properties": {
+        "account": {
+          "type": "object",
+          "description": "Terms for user accounts",
+          "properties": {
+            "singular": {
+              "type": "string",
+              "description": "Singular form (e.g., 'salon', 'store', 'studio')"
+            },
+            "plural": {
+              "type": "string",
+              "description": "Plural form (e.g., 'salons', 'stores', 'studios')"
+            }
+          }
+        },
+        "entity": {
+          "type": "object",
+          "description": "Terms for primary business entities",
+          "properties": {
+            "singular": {
+              "type": "string",
+              "description": "Singular form (e.g., 'pet', 'book', 'client')"
+            },
+            "plural": {
+              "type": "string",
+              "description": "Plural form (e.g., 'pets', 'books', 'clients')"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "Display name for the entities page"
+            }
+          }
+        },
+        "service": {
+          "type": "object",
+          "description": "Terms for services/appointments",
+          "properties": {
+            "provider": {
+              "type": "string",
+              "description": "Service provider term (e.g., 'groomer', 'instructor', 'trainer')"
+            },
+            "session": {
+              "type": "string",
+              "description": "Service session term (e.g., 'appointment', 'class', 'session')"
+            },
+            "schedule": {
+              "type": "string",
+              "description": "Schedule term (e.g., 'schedule', 'calendar', 'bookings')"
+            }
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "required": ["title", "description", "items"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Features section title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Features section description"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "required": ["title", "description", "icon"],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string",
+                "description": "Icon name from lucide-react"
+              }
+            }
+          }
+        }
+      }
+    },
+    "testimonial": {
+      "type": "object",
+      "properties": {
+        "quote": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "authorTitle": {
+          "type": "string"
+        },
+        "authorImage": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "cta": {
+      "type": "object",
+      "description": "Call-to-action section",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "description": "Paths to data files",
+      "properties": {
+        "entities": {
+          "type": "string",
+          "description": "Path to entities data file (e.g., pets.json, products.json)"
+        },
+        "schedule": {
+          "type": "string",
+          "description": "Path to schedule/calendar data file"
+        }
+      }
+    },
+    "stripe": {
+      "type": "object",
+      "description": "Stripe-specific configuration",
+      "properties": {
+        "statementDescriptor": {
+          "type": "string",
+          "description": "Statement descriptor for payments"
+        },
+        "supportEmail": {
+          "type": "string",
+          "description": "Support email for Stripe account"
+        },
+        "supportUrl": {
+          "type": "string",
+          "description": "Support URL for Stripe account"
+        }
+      }
+    }
+  }
+}

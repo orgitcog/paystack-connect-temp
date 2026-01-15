@@ -1,0 +1,78 @@
+{
+  "$schema": "./zone.config.schema.json",
+  "zone": {
+    "name": "ZoneName",
+    "description": "A brief description of your platform",
+    "domain": "example.com"
+  },
+  "branding": {
+    "displayName": "YourBrand",
+    "tagline": "Your main headline goes here",
+    "heroDescription": "A description of what your platform does and why users should join.",
+    "logo": {
+      "path": "/logo.png",
+      "alt": "Your brand logo"
+    },
+    "favicon": "/favicon.png",
+    "heroImage": "/hero-image.jpeg",
+    "primaryColor": "#635BFF",
+    "accentColor": "#00D4AA"
+  },
+  "terminology": {
+    "account": {
+      "singular": "business",
+      "plural": "businesses"
+    },
+    "entity": {
+      "singular": "item",
+      "plural": "items",
+      "displayName": "Items"
+    },
+    "service": {
+      "provider": "provider",
+      "session": "session",
+      "schedule": "schedule"
+    }
+  },
+  "features": {
+    "title": "Everything you need to manage your business.",
+    "description": "FEATURES",
+    "items": [
+      {
+        "title": "Feature 1",
+        "description": "Description of your first key feature",
+        "icon": "CalendarCheck"
+      },
+      {
+        "title": "Feature 2",
+        "description": "Description of your second key feature",
+        "icon": "CreditCard"
+      },
+      {
+        "title": "Feature 3",
+        "description": "Description of your third key feature",
+        "icon": "ReceiptText"
+      }
+    ]
+  },
+  "testimonial": {
+    "quote": "Your customer testimonial quote goes here",
+    "author": "Customer Name",
+    "authorTitle": "Company Name",
+    "authorImage": "/testimonial-portrait.jpg",
+    "image": "/testimonial.jpeg"
+  },
+  "cta": {
+    "title": "Get started today.",
+    "description": "Join our platform and grow your business"
+  },
+  "data": {
+    "entities": "/app/data/entities.json",
+    "schedule": "/app/data/schedule.json"
+  },
+  "stripe": {
+    "statementDescriptor": "YOURCO",
+    "supportEmail": "support@example.com",
+    "supportUrl": "https://example.com"
+  }
+}
