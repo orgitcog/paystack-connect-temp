@@ -32,7 +32,10 @@ export class PaystackClient {
       const response = await this.client.request(config);
       return response.data;
     } catch (error: any) {
-      console.error('Paystack API Error:', error.response?.data || error.message);
+      console.error(
+        'Paystack API Error:',
+        error.response?.data || error.message
+      );
       throw error;
     }
   }

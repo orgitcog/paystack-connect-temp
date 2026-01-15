@@ -188,7 +188,8 @@ export const usePaystack = () => {
 
       try {
         const queryParams = new URLSearchParams();
-        if (params?.perPage) queryParams.append('perPage', params.perPage.toString());
+        if (params?.perPage)
+          queryParams.append('perPage', params.perPage.toString());
         if (params?.page) queryParams.append('page', params.page.toString());
         if (params?.from) queryParams.append('from', params.from);
         if (params?.to) queryParams.append('to', params.to);

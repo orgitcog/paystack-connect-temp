@@ -250,7 +250,9 @@ export default function PaystackOnboarding({
           id="percentageCharge"
           type="number"
           value={formData.percentageCharge}
-          onChange={(e) => handleInputChange('percentageCharge', e.target.value)}
+          onChange={(e) =>
+            handleInputChange('percentageCharge', e.target.value)
+          }
           placeholder="0"
           min="0"
           max="100"
@@ -263,7 +265,11 @@ export default function PaystackOnboarding({
       </div>
 
       <div className="flex justify-end gap-2 pt-4">
-        <Button variant="outline" onClick={() => setStep(1)} disabled={isLoading}>
+        <Button
+          variant="outline"
+          onClick={() => setStep(1)}
+          disabled={isLoading}
+        >
           Back
         </Button>
         <Button

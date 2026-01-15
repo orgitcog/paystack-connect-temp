@@ -83,10 +83,12 @@ To integrate Stripe Connect embedded components, check out our [documentation](h
 You'll need either a Stripe account or a Paystack account to manage onboarding and payments:
 
 ### Stripe (Original Platform)
+
 - [Sign up for free](https://dashboard.stripe.com/register), then [enable Connect](https://dashboard.stripe.com/account/applications/settings) by filling in your Connect settings.
 - Fill in the necessary information in the **Branding** section in [Connect settings](https://dashboard.stripe.com/test/settings/connect).
 
 ### Paystack (Africa Platform)
+
 - [Sign up for Paystack](https://dashboard.paystack.com/#/signup)
 - Get your API keys from [Settings > API Keys & Webhooks](https://dashboard.paystack.com/#/settings/developer)
 - Enable Subaccounts feature for Connect-like functionality
@@ -106,11 +108,13 @@ cp .env.example .env
 ```
 
 For **Stripe**, add your [Stripe API keys](https://dashboard.stripe.com/account/apikeys):
+
 - `STRIPE_SECRET_KEY`
 - `STRIPE_PUBLIC_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 
 For **Paystack**, add your [Paystack API keys](https://dashboard.paystack.com/#/settings/developer):
+
 - `PAYSTACK_SECRET_KEY`
 - `PAYSTACK_PUBLIC_KEY`
 
@@ -133,17 +137,20 @@ Go to `http://localhost:{process.env.PORT}` in your browser to start using the a
 To test events sent to your event handler, you can run this command in a separate terminal:
 
 **For Stripe:**
+
 ```
 stripe listen --forward-to localhost:3000/api/webhooks
 ```
 
 Then, trigger a test event with:
+
 ```
 stripe trigger payment_intent.succeeded
 ```
 
 **For Paystack:**
 Set up webhooks in your [Paystack Dashboard](https://dashboard.paystack.com/#/settings/developer) pointing to:
+
 ```
 http://localhost:3000/api/paystack/webhooks
 ```
@@ -154,23 +161,23 @@ This platform now supports both Stripe Connect and Paystack, providing a seamles
 
 ### Key Differences
 
-| Feature | Stripe Connect | Paystack |
-|---------|---------------|----------|
-| Connected Accounts | Yes (Connected Accounts API) | Yes (Subaccounts API) |
-| Embedded Components | Yes (UI components) | No (custom UI required) |
-| Markets | US, Europe, Global | Nigeria, Ghana, South Africa |
-| Dashboard Access | Configurable | Via Paystack Dashboard |
-| Onboarding | Embedded onboarding | Custom bank verification |
-| Split Payments | Yes | Yes (via subaccounts) |
+| Feature             | Stripe Connect               | Paystack                     |
+| ------------------- | ---------------------------- | ---------------------------- |
+| Connected Accounts  | Yes (Connected Accounts API) | Yes (Subaccounts API)        |
+| Embedded Components | Yes (UI components)          | No (custom UI required)      |
+| Markets             | US, Europe, Global           | Nigeria, Ghana, South Africa |
+| Dashboard Access    | Configurable                 | Via Paystack Dashboard       |
+| Onboarding          | Embedded onboarding          | Custom bank verification     |
+| Split Payments      | Yes                          | Yes (via subaccounts)        |
 
 ### API Equivalents
 
-| Stripe | Paystack | Purpose |
-|--------|----------|---------|
-| Connected Accounts | Subaccounts | Manage merchant accounts |
-| Charges | Transactions | Process payments |
-| Payouts | Transfers | Send money to accounts |
-| Account Sessions | N/A | Managed via API calls |
+| Stripe             | Paystack     | Purpose                  |
+| ------------------ | ------------ | ------------------------ |
+| Connected Accounts | Subaccounts  | Manage merchant accounts |
+| Charges            | Transactions | Process payments         |
+| Payouts            | Transfers    | Send money to accounts   |
+| Account Sessions   | N/A          | Managed via API calls    |
 
 ### Using Paystack
 

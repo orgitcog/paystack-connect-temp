@@ -36,10 +36,6 @@ export default function PaystackTransactionsList() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchTransactions();
-  }, [page]);
-
   const fetchTransactions = async () => {
     try {
       setError(null);
@@ -52,6 +48,11 @@ export default function PaystackTransactionsList() {
       setError(err.message || 'Failed to load transactions');
     }
   };
+
+  useEffect(() => {
+    fetchTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   const formatAmount = (amount: number, currency: string) => {
     // Convert from kobo/pesewas/cents to main currency unit
@@ -119,7 +120,9 @@ export default function PaystackTransactionsList() {
       ) : transactions.length === 0 ? (
         <div className="flex h-64 items-center justify-center rounded-lg border border-dashed">
           <div className="text-center">
-            <p className="text-lg font-medium text-gray-900">No transactions yet</p>
+            <p className="text-lg font-medium text-gray-900">
+              No transactions yet
+            </p>
             <p className="mt-1 text-sm text-gray-500">
               Transactions will appear here once you start accepting payments
             </p>
@@ -149,7 +152,7 @@ export default function PaystackTransactionsList() {
                       <div>
                         <div className="font-medium">
                           {transaction.customer.first_name ||
-                            transaction.customer.last_name
+                          transaction.customer.last_name
                             ? `${transaction.customer.first_name || ''} ${transaction.customer.last_name || ''}`.trim()
                             : 'N/A'}
                         </div>

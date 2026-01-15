@@ -14,10 +14,9 @@ export async function POST(req: NextRequest) {
     // Verify webhook signature
     if (!signature) {
       console.error('No signature provided');
-      return new Response(
-        JSON.stringify({error: 'No signature provided'}),
-        {status: 400}
-      );
+      return new Response(JSON.stringify({error: 'No signature provided'}), {
+        status: 400,
+      });
     }
 
     const hash = crypto
@@ -27,10 +26,9 @@ export async function POST(req: NextRequest) {
 
     if (hash !== signature) {
       console.error('Invalid signature');
-      return new Response(
-        JSON.stringify({error: 'Invalid signature'}),
-        {status: 400}
-      );
+      return new Response(JSON.stringify({error: 'Invalid signature'}), {
+        status: 400,
+      });
     }
 
     // Parse the event
@@ -89,10 +87,9 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     console.error('Error processing Paystack webhook:', error);
-    return new Response(
-      JSON.stringify({error: 'Webhook processing failed'}),
-      {status: 500}
-    );
+    return new Response(JSON.stringify({error: 'Webhook processing failed'}), {
+      status: 500,
+    });
   }
 }
 

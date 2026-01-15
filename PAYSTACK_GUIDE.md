@@ -96,6 +96,7 @@ https://yourdomain.com/api/paystack/webhooks
 ```
 
 Supported events:
+
 - `charge.success` - Payment successful
 - `transfer.success` - Payout successful
 - `transfer.failed` - Payout failed
@@ -107,6 +108,7 @@ Supported events:
 ### Subaccounts
 
 #### Create Subaccount
+
 ```typescript
 POST /api/paystack/subaccount/create
 {
@@ -121,6 +123,7 @@ POST /api/paystack/subaccount/create
 ### Transactions
 
 #### Initialize Transaction
+
 ```typescript
 POST /api/paystack/transaction/initialize
 {
@@ -132,6 +135,7 @@ POST /api/paystack/transaction/initialize
 ```
 
 #### List Transactions
+
 ```typescript
 GET /api/paystack/transaction/list?page=1&perPage=20
 ```
@@ -139,6 +143,7 @@ GET /api/paystack/transaction/list?page=1&perPage=20
 ### Transfers (Payouts)
 
 #### Initiate Transfer
+
 ```typescript
 POST /api/paystack/transfer/initiate
 {
@@ -152,18 +157,21 @@ POST /api/paystack/transfer/initiate
 ### Balance
 
 #### Get Balance
+
 ```typescript
-GET /api/paystack/balance
+GET / api / paystack / balance;
 ```
 
 ### Banks
 
 #### List Banks
+
 ```typescript
 GET /api/paystack/banks?country=nigeria
 ```
 
 #### Verify Account
+
 ```typescript
 GET /api/paystack/verify_account?account_number=0690000031&bank_code=044
 ```
@@ -223,9 +231,10 @@ Paystack uses the smallest currency unit:
 - **ZAR (South African Rand)**: Amount in cents (1 Rand = 100 cents)
 
 Example:
+
 ```typescript
 // NGN 10,000.00 = 1,000,000 kobo
-amount: 1000000
+amount: 1000000;
 ```
 
 ## Testing
@@ -233,11 +242,13 @@ amount: 1000000
 Paystack provides test API keys that work with test bank accounts:
 
 ### Test Bank Details
+
 - **Bank**: Access Bank (044)
 - **Account Number**: 0690000031
 - **Account Name**: Test Account
 
 ### Test Cards
+
 - **Card Number**: 4084 0840 8408 4081
 - **Expiry**: Any future date
 - **CVV**: 408
@@ -246,15 +257,15 @@ Paystack provides test API keys that work with test bank accounts:
 
 ## Migration from Stripe
 
-| Stripe Concept | Paystack Equivalent | Notes |
-|----------------|---------------------|-------|
-| Connected Accounts | Subaccounts | Similar split payment functionality |
-| Account ID (acct_xxx) | Subaccount Code (ACCT_xxx) | Both are unique identifiers |
-| Charges/PaymentIntents | Transactions | Initialize → Authorize → Charge flow |
-| Payouts | Transfers | Both send money to bank accounts |
-| Balance | Balance | Both track available funds |
-| Account Sessions | N/A | Paystack uses direct API calls |
-| Embedded Components | Custom UI | Build your own UI components |
+| Stripe Concept         | Paystack Equivalent        | Notes                                |
+| ---------------------- | -------------------------- | ------------------------------------ |
+| Connected Accounts     | Subaccounts                | Similar split payment functionality  |
+| Account ID (acct_xxx)  | Subaccount Code (ACCT_xxx) | Both are unique identifiers          |
+| Charges/PaymentIntents | Transactions               | Initialize → Authorize → Charge flow |
+| Payouts                | Transfers                  | Both send money to bank accounts     |
+| Balance                | Balance                    | Both track available funds           |
+| Account Sessions       | N/A                        | Paystack uses direct API calls       |
+| Embedded Components    | Custom UI                  | Build your own UI components         |
 
 ## Best Practices
 
@@ -268,15 +279,19 @@ Paystack provides test API keys that work with test bank accounts:
 ## Common Issues
 
 ### Issue: "Invalid bank code"
+
 **Solution**: Get the correct bank code using the `/api/paystack/banks` endpoint
 
 ### Issue: "Account verification failed"
+
 **Solution**: Ensure the account number is exactly 10 digits and the bank code is correct
 
 ### Issue: "Insufficient balance"
+
 **Solution**: Ensure the platform account has sufficient balance for transfers
 
 ### Issue: "Webhook signature mismatch"
+
 **Solution**: Verify that `PAYSTACK_SECRET_KEY` in your environment matches the one used in webhook signature verification
 
 ## Resources
@@ -290,11 +305,13 @@ Paystack provides test API keys that work with test bank accounts:
 ## Support
 
 For Paystack-specific issues:
+
 - Email: support@paystack.com
 - Twitter: [@paystack](https://twitter.com/paystack)
 - Community: [Paystack Slack](https://paystack-community.slack.com)
 
 For integration issues:
+
 - Check this documentation
 - Review the [paystack-oss.md](./paystack-oss.md) file
 - Open an issue in this repository

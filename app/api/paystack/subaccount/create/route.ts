@@ -69,10 +69,7 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (error: any) {
-    console.error(
-      'An error occurred when creating Paystack subaccount',
-      error
-    );
+    console.error('An error occurred when creating Paystack subaccount', error);
     return new Response(
       JSON.stringify({
         error: error.message || 'Internal server error',

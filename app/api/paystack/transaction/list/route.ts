@@ -55,7 +55,10 @@ export async function GET(req: NextRequest) {
       );
     }
   } catch (error: any) {
-    console.error('An error occurred when listing Paystack transactions', error);
+    console.error(
+      'An error occurred when listing Paystack transactions',
+      error
+    );
     return new Response(
       JSON.stringify({
         error: error.message || 'Internal server error',
