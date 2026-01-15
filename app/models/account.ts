@@ -26,6 +26,8 @@ const AccountSchema = new Schema<Express.Request['user']>({
   lastName: String,
   // Stripe account ID to send payments obtained with Stripe Connect.
   stripeAccountId: String,
+  // Paystack subaccount code for payments with Paystack
+  paystackSubaccountCode: String,
   // Can be no_dashboard_soll, no_dashboard_poll, dashboard_soll. Default is no_dashboard_soll
   accountConfig: String,
   businessName: String,
