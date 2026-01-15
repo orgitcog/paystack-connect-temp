@@ -21,12 +21,20 @@ export async function createPaystackSubaccount(
   params: CreateSubaccountParams
 ): Promise<any> {
   try {
-    // For development/testing, use default bank details
-    // In production, these should come from user input
+    // Determine if we're in test/development mode
+    const isTestMode =
+      process.env.NODE_ENV !== 'production' ||
+      process.env.PAYSTACK_SECRET_KEY?.startsWith('sk_test_');
+
+    // For development/testing, use default bank details if not provided
+    // In production with live keys, these should always come from user input
+    const useDefaults =
+      isTestMode && (!params.settlementBank || !params.accountNumber);
+
     const response: any = await paystack.subaccounts.create({
       business_name: params.businessName,
-      settlement_bank: params.settlementBank || '044', // Access Bank Nigeria (for testing)
-      account_number: params.accountNumber || '0690000031', // Test account number
+      settlement_bank: params.settlementBank || (useDefaults ? '044' : ''), // Access Bank Nigeria (for testing)
+      account_number: params.accountNumber || (useDefaults ? '0690000031' : ''), // Test account number
       percentage_charge: params.percentageCharge || 0,
       description: params.description || 'Platform subaccount',
       primary_contact_email: params.email,

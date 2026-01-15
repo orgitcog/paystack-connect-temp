@@ -95,6 +95,8 @@ export async function POST(req: NextRequest) {
 
 /**
  * Event handlers
+ * These are minimal implementations for demonstration purposes.
+ * In production, you should implement full business logic for each event type.
  */
 
 async function handleChargeSuccess(data: any) {

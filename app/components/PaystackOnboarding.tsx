@@ -277,7 +277,7 @@ export default function PaystackOnboarding({
           disabled={
             !formData.settlementBank ||
             !formData.accountNumber ||
-            formData.accountNumber.length !== 10 ||
+            formData.accountNumber.length !== 10 || // Nigerian bank accounts are 10 digits
             isLoading
           }
         >

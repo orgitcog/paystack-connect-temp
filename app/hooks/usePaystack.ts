@@ -236,6 +236,18 @@ export const usePaystack = () => {
 // Extend Window interface for PaystackPop
 declare global {
   interface Window {
-    PaystackPop?: any;
+    PaystackPop?: {
+      setup: (config: {
+        key: string;
+        email: string;
+        amount?: number;
+        currency?: string;
+        ref?: string;
+        onClose: () => void;
+        callback: (response: any) => void;
+      }) => {
+        openIframe: () => void;
+      };
+    };
   }
 }
